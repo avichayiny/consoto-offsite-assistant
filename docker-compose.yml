@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npm run dev
+
+  frontend:
+   build:
+     context: ./frontend
+   ports:
+     - "5173:5173"
+   environment:
+     - VITE_API_URL=http://localhost:3000
+   volumes:
+     - ./frontend:/usr/src/app
+     - /usr/src/app/node_modules
+   command: npm run dev -- --host

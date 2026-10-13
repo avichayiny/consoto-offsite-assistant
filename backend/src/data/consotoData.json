@@ -1,0 +1,28 @@
+{
+  "platformTeam": [
+    { "name": "Noa Levi", "role": "Team lead", "dietary": null, "accessibility": null },
+    { "name": "Omer Haddad", "role": "Backend", "dietary": "Vegan", "accessibility": null },
+    { "name": "Dana Mizrahi", "role": "Backend", "dietary": null, "accessibility": null },
+    { "name": "Yossi Ben-David", "role": "DevOps", "dietary": null, "accessibility": "Uses a wheelchair" },
+    { "name": "Tamar Peretz", "role": "Frontend", "dietary": "Vegan", "accessibility": null },
+    { "name": "Eitan Shapiro", "role": "Backend", "dietary": "Kosher", "accessibility": null },
+    { "name": "Lior Avraham", "role": "QA", "dietary": null, "accessibility": null },
+    { "name": "Shira Katz", "role": "Frontend", "dietary": "Gluten-free", "accessibility": null },
+    { "name": "Amit Friedman", "role": "DevOps", "dietary": null, "accessibility": null },
+    { "name": "Rotem Biton", "role": "Data", "dietary": null, "accessibility": null },
+    { "name": "Gil Azoulay", "role": "Backend", "dietary": null, "accessibility": null },
+    { "name": "Yael Dahan", "role": "Product", "dietary": null, "accessibility": null }
+  ],
+  "destinationCosts": {
+    "Lisbon": { "returnFlight": 320, "hotelPerNight": 140, "mealsPerDay": 55, "activitiesPerDay": 40 },
+    "Barcelona": { "returnFlight": 300, "hotelPerNight": 160, "mealsPerDay": 60, "activitiesPerDay": 45 },
+    "Athens": { "returnFlight": 180, "hotelPerNight": 110, "mealsPerDay": 45, "activitiesPerDay": 35 },
+    "Prague": { "returnFlight": 260, "hotelPerNight": 100, "mealsPerDay": 40, "activitiesPerDay": 30 },
+    "Budapest": { "returnFlight": 240, "hotelPerNight": 95, "mealsPerDay": 40, "activitiesPerDay": 30 }
+  },
+  "policyRules": {
+    "maxDays": 3,
+    "maxNights": 2,
+    "maxBudgetPerPersonILS": 4000
+  }
+}
