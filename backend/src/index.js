@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
+const { handleChat } = require('./orchestrator');
+const { getSessionHistory } = require('./utils/stateManager');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -8,14 +10,33 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-app.get('/api/chat/stream', (req, res) => {
+app.get('/api/chat/stream', async (req, res) => {
+    const { message } = req.query;
+    const sessionId = req.query.sessionId || 'default-session';
+
     res.set({
         'Content-Type': 'text/event-stream',
         'Cache-Control': 'no-cache',
         'Connection': 'keep-alive'
     });
+    res.flushHeaders();
 
-    // Orchestrator streaming logic will be implemented here
+    const onStatusUpdate = statusText => {
+        res.write(`data: ${JSON.stringify({ type: 'status', content: statusText })}\n\n`);
+    };
+
+    const history = getSessionHistory(sessionId);
+    try {
+        const finalResponse = await handleChat(message, history, onStatusUpdate);
+        res.write(`data: ${JSON.stringify({ type: 'message', content: finalResponse })}\n\n`);
+        res.write('data: [DONE]\n\n');
+        res.end();
+    } catch (error) {
+        console.error('Failed to handle chat stream:', error);
+        res.write(`data: ${JSON.stringify({ type: 'error', content: 'Failed to process chat request' })}\n\n`);
+        res.write('data: [DONE]\n\n');
+        res.end();
+    }
 });
 
 app.get('/health', (req, res) => {
