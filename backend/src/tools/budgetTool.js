@@ -3,7 +3,7 @@ const consotoData = require('../data/consotoData.json');
 
 async function calculateAndCheckPolicy(destination, days, nights) {
     const { destinationCosts, policyRules } = consotoData;
-
+    console.log('budget')
     if (days > policyRules.maxDays || nights > policyRules.maxNights) {
         return {
             status: 'REJECTED',
