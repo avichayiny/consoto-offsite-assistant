@@ -19,7 +19,6 @@ Calculations and policy enforcements are handled strictly in code, not by the LL
    docker compose up --build
    ```
 
-
+## Quickstart
 OSM / Overpass API Unreliability: During development, the main Overpass FOSSGIS server actively blocked requests despite strictly following their usage policies (including proper User-Agent headers). Alternative mirror servers suffered from constant timeouts. Solution: I kept the exact API integration logic pointing to the main server, but wrapped it in a deterministic mock-data fallback. If the API fails, the fallback triggers seamlessly so the UI never freezes and the flow remains robust.
-
 In-Memory State vs. Database: Conversation history is currently stored in-memory in the Node.js backend using a Map keyed by sessionId. This is lightweight and perfect for a local demo, but would require an external database for production scaling.
