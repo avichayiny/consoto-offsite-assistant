@@ -1,4 +1,4 @@
 module.exports = {
-    GEMINI_MODELS: ['gemini-1.5-flash', 'gemini-1.5-pro'],
-    GROQ_MODELS: ['llama-3.1-70b-versatile', 'llama3-8b-8192']
+    GEMINI_MODELS: ['gemini-3.1-flash-lite','gemini-3.5-flash-lite','gemini-3.6-flash', 'gemini-3.8-flash'],
+    GROQ_MODELS: ["openai/gpt-oss-120b","groq/compound"]
 };

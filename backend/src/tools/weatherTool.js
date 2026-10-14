@@ -1,6 +1,18 @@
 const axios = require('axios');
 
 async function getWeatherForecast(destination, startDate, endDate) {
+
+    const today = new Date();
+    const targetDate = new Date(startDate);
+    const daysDifference = (targetDate - today) / (1000 * 60 * 60 * 24);
+
+    if (daysDifference > 14 || daysDifference < 0) {
+        return {
+            status: 'UNAVAILABLE',
+            reason: 'Forecast unavailable - date is either in the past or too far in the future. Maximum forecast range is 14 days.'
+        };
+    }
+
     let coordinates;
     try {
         const response = await axios.get(

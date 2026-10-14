@@ -1,8 +1,18 @@
-FROM node:20
-WORKDIR /usr/src/app
-COPY package.json ./
+FROM node:20-alpine
 
-RUN npm install --maxsockets=1 --no-audit --no-fund
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm config set registry https://registry.npmjs.org/ \
+    && npm config set fetch-retries 5 \
+    && npm config set fetch-retry-mintimeout 20000 \
+    && npm config set fetch-retry-maxtimeout 120000
+
+RUN npm install
+
 COPY . .
+
 EXPOSE 5173
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+
+CMD ["npm", "run", "dev", "--", "--host"]
