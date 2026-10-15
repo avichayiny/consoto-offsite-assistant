@@ -26,3 +26,5 @@ Calculations and policy enforcements are handled strictly in code, not by the LL
 ## What I would do next
 - Fixes the issue with OSM, perhaps by using a different tool for relevant data.
 - Parallel Agent Execution: For complex queries, allow the Orchestrator to dispatch tasks to the Scout and Budget agents (for example) in parallel rather than sequentially, reducing overall response latency.
+- Improving the UI.
+- Add documentation to the project.
